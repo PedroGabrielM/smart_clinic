@@ -1,4 +1,3 @@
-// src/entities/Patient.ts
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -10,7 +9,7 @@ import { Appointment } from "./Appointment";
 @Entity({ name: "patients" })
 export class Patient {
   @PrimaryGeneratedColumn()
-  id!: number;
+    id!: number;
 
   @Column({ length: 100 })
     name!: string;

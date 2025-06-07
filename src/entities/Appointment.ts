@@ -1,4 +1,3 @@
-// src/entities/Appointment.ts
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -15,20 +14,22 @@ export class Appointment {
     id!: number;
 
   @ManyToOne(() => Patient, (patient) => patient.appointments, {
-        onDelete: "CASCADE",
-        eager: true,
-    })
-    @JoinColumn({ name: "patient_id" })
+    onDelete: "CASCADE",
+    eager: true,
+  })
+    
+  @JoinColumn({ name: "patient_id" })
     patient!: Patient;
 
   @Column()
     patient_id!: number;
 
   @ManyToOne(() => Doctor, (doctor) => doctor.appointments, {
-        onDelete: "CASCADE",
-        eager: true,
-    })
-    @JoinColumn({ name: "doctor_id" })
+    onDelete: "CASCADE",
+    eager: true,
+  })
+
+  @JoinColumn({ name: "doctor_id" })
     doctor!: Doctor;
 
   @Column()
