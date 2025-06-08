@@ -12,7 +12,7 @@ const ctrl = new DoctorController();
  */
 /**
  * @swagger
- * /api/doctors:
+ * /doctors:
  *   post:
  *     summary: Cria um novo médico
  *     tags: [Doctors]
@@ -37,7 +37,7 @@ router.post("/", (req, res, next) =>
 
 /**
  * @swagger
- * /api/doctors:
+ * /doctors:
  *   get:
  *     summary: Lista todos os medicos
  *     description: Retorna uma lista de todos os médicos cadastrados no sistema.
@@ -51,7 +51,7 @@ router.get("/", (req, res, next) => ctrl.findAll(req, res, next));
 
 /**
  * @swagger
- * /api/doctors/{id}:
+ * /doctors/{id}:
  *   get:
  *     summary: Retorna um médico por ID
  *     tags: [Doctors]

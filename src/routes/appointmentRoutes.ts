@@ -13,7 +13,7 @@ const ctrl = new AppointmentController();
 
 /**
  * @swagger
- * /api/appointments:
+ * /appointments:
  *   post:
  *     summary: Cria um novo agendamento
  *     tags: [Appointments]
@@ -37,7 +37,7 @@ router.post("/", (req, res, next) =>
 
 /**
  * @swagger
- * /api/doctor/{doctorId}:
+ * /doctor/{doctorId}:
  *   get:
  *     summary: Retorna um médico por ID
  *     tags: [Appointments]
@@ -59,7 +59,7 @@ router.get("/doctor/:doctorId", (req, res, next) =>
 
 /**
  * @swagger
- * /api/patient/{patientId}:
+ * /patient/{patientId}:
  *   get:
  *     summary: Retorna um médico por ID
  *     tags: [Appointments]

@@ -13,7 +13,7 @@ const ctrl = new PatientController();
 
 /**
  * @swagger
- * /api/patients:
+ * /patients:
  *   post:
  *     summary: Cria um novo paciente
  *     tags: [Patients]
@@ -37,7 +37,7 @@ router.post("/", (req, res, next) =>
 
 /**
  * @swagger
- * /api/patients:
+ * /patients:
  *   get:
  *     summary: Lista todos os pacientes
  *     tags: [Patients]
@@ -49,7 +49,7 @@ router.get("/", (req, res, next) => ctrl.findAll(req, res, next));
 
 /**
  * @swagger
- * /api/patients/{id}:
+ * /patients/{id}:
  *   get:
  *     summary: Retorna um paciente por ID
  *     tags: [Patients]
