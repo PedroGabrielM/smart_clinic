@@ -50,5 +50,23 @@ router.post("/", (req, res, next) =>
  */
 router.get("/", (req, res, next) => ctrl.findAll(req, res, next));
 
+/**
+ * @swagger
+ * /api/patients/{id}:
+ *   get:
+ *     summary: Retorna um paciente por ID
+ *     tags: [Patients]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema: { type: integer }
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: Dados do paciente
+ *       404:
+ *         description: Paciente não encontrado
+ */
+router.get("/:id", (req, res, next) => ctrl.findById(req, res, next));
+
 export default router;
-    

@@ -1,6 +1,4 @@
-// src/controllers/PatientController.ts
 import { Request, Response, NextFunction } from "express";
-// Update the import path below if the actual location is different
 import { PatientService } from "../services/PatientService";
 
 const service = new PatientService();
@@ -24,11 +22,10 @@ export class PatientController {
     }
   }
 
-  async findById(req: Request, res: Response, next: NextFunction) {
+  async findById(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const id = Number(req.params.id);
       const patient = await service.findById(id);
-      if (!patient) return res.status(404).json({ message: "Paciente não encontrado." });
       res.json(patient);
     } catch (err) {
       next(err);

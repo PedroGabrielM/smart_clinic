@@ -11,33 +11,31 @@ import { Doctor } from "./Doctor";
 @Entity({ name: "appointments" })
 export class Appointment {
   @PrimaryGeneratedColumn()
-    id!: number;
+  id!: number;
 
   @ManyToOne(() => Patient, (patient) => patient.appointments, {
     onDelete: "CASCADE",
     eager: true,
   })
-    
   @JoinColumn({ name: "patient_id" })
-    patient!: Patient;
+  patient!: Patient;
 
-  @Column()
-    patient_id!: number;
+  @Column({ name: "patient_id" })
+  patientId!: number;
 
   @ManyToOne(() => Doctor, (doctor) => doctor.appointments, {
     onDelete: "CASCADE",
     eager: true,
   })
-
   @JoinColumn({ name: "doctor_id" })
-    doctor!: Doctor;
+  doctor!: Doctor;
 
-  @Column()
-    doctor_id!: number;
+  @Column({ name: "doctor_id" })
+  doctorId!: number;
 
-  @Column("timestamp without time zone")
-    appointment_date!: Date;
+  @Column("timestamp without time zone", { name: "appointment_date" })
+  appointmentDate!: Date;
 
   @Column({ length: 255, nullable: true })
-    notes!: string;
+  notes!: string;
 }

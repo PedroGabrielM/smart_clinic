@@ -1,4 +1,3 @@
-// src/controllers/DoctorController.ts
 import { Request, Response, NextFunction } from "express";
 import { DoctorService } from "../services/DoctorService";
 
@@ -23,11 +22,10 @@ export class DoctorController {
     }
   }
 
-  async findById(req: Request, res: Response, next: NextFunction) {
+  async findById(req: Request, res: Response, next: NextFunction): Promise<void>{
     try {
       const id = Number(req.params.id);
       const doctor = await service.findById(id);
-      if (!doctor) return res.status(404).json({ message: "Médico não encontrado." });
       res.json(doctor);
     } catch (err) {
       next(err);

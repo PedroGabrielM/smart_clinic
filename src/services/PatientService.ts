@@ -6,7 +6,7 @@ export class PatientService {
   private repo = AppDataSource.getRepository(Patient);
 
   /** Cria um novo paciente, lançando erro se o email já existir */
-  async create(dto: CreatePatientDto): Promise<Patient> {
+  async create(dto: CreatePatientDto){
     const exists = await this.repo.findOneBy({ email: dto.email });
     if (exists) throw new Error("PATIENT_EMAIL_CONFLICT");
     const patient = this.repo.create(dto);
@@ -14,12 +14,12 @@ export class PatientService {
   }
 
   /** Retorna todos os pacientes */
-  async findAll(): Promise<Patient[]> {
+  async findAll() {
     return this.repo.find();
   }
 
   /** Retorna paciente por ID ou null se não existir */
-  async findById(id: number): Promise<Patient | null> {
+  async findById(id: number) {
     return this.repo.findOneBy({ id });
   }
 }

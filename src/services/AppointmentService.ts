@@ -11,7 +11,7 @@ export class AppointmentService {
   private doctorRepo = AppDataSource.getRepository(Doctor);
 
   /** Cria um agendamento, validando existência e conflitos de horário */
-  async create(dto: CreateAppointmentDto): Promise<Appointment> {
+  async create(dto: CreateAppointmentDto) {
     // 1) verificar paciente
     const patient = await this.patientRepo.findOneBy({ id: dto.patient_id });
     if (!patient) throw new Error("PATIENT_NOT_FOUND");
@@ -39,7 +39,7 @@ export class AppointmentService {
   }
 
   /** Lista agendamentos de um médico, ordenados por data asc */
-  async findByDoctor(doctorId: number): Promise<Appointment[]> {
+  async findByDoctor(doctorId: number) {
     const doctor = await this.doctorRepo.findOneBy({ id: doctorId });
     if (!doctor) throw new Error("DOCTOR_NOT_FOUND");
     return this.repo.find({
@@ -50,7 +50,7 @@ export class AppointmentService {
   }
 
   /** Lista agendamentos de um paciente, ordenados por data asc */
-  async findByPatient(patientId: number): Promise<Appointment[]> {
+  async findByPatient(patientId: number) {
     const patient = await this.patientRepo.findOneBy({ id: patientId });
     if (!patient) throw new Error("PATIENT_NOT_FOUND");
     return this.repo.find({
