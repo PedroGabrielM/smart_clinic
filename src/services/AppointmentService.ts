@@ -13,26 +13,26 @@ export class AppointmentService {
   /** Cria um agendamento, validando existência e conflitos de horário */
   async create(dto: CreateAppointmentDto) {
     // 1) verificar paciente
-    const patient = await this.patientRepo.findOneBy({ id: dto.patient_id });
+    const patient = await this.patientRepo.findOneBy({ id : dto.patientId });
     if (!patient) throw new Error("PATIENT_NOT_FOUND");
 
     // 2) verificar médico
-    const doctor = await this.doctorRepo.findOneBy({ id: dto.doctor_id });
+    const doctor = await this.doctorRepo.findOneBy({ id: dto.doctorId });
     if (!doctor) throw new Error("DOCTOR_NOT_FOUND");
 
     // 3) verificar conflito de agenda
-    const date = new Date(dto.appointment_date);
+    const date = new Date(dto.appointmentDate);
     const conflict = await this.repo.findOneBy({
-      doctor_id: dto.doctor_id,
-      appointment_date: date,
+      doctorId: dto.doctorId,
+      appointmentDate: date,
     });
     if (conflict) throw new Error("DOCTOR_SCHEDULE_CONFLICT");
 
     // 4) criar e salvar
     const appointment = this.repo.create({
-      patient_id: dto.patient_id,
-      doctor_id: dto.doctor_id,
-      appointment_date: date,
+      patient: { id: dto.patientId },
+      doctor: { id: dto.doctorId },
+      appointmentDate: date,
       notes: dto.notes || "",
     });
     return this.repo.save(appointment);
@@ -44,8 +44,7 @@ export class AppointmentService {
     if (!doctor) throw new Error("DOCTOR_NOT_FOUND");
     return this.repo.find({
       where: { doctor: { id: doctorId } },
-      relations: ["patient", "doctor"],
-      order: { appointment_date: "ASC" },
+      relations: ["patient", "doctor"]
     });
   }
 
@@ -55,8 +54,7 @@ export class AppointmentService {
     if (!patient) throw new Error("PATIENT_NOT_FOUND");
     return this.repo.find({
       where: { patient: { id: patientId } },
-      relations: ["patient", "doctor"],
-      order: { appointment_date: "ASC" },
+      relations: ["patient", "doctor"]
     });
   }
 }
