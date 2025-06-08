@@ -1,8 +1,5 @@
-// src/routes/appointmentRoutes.ts
 import { Router } from "express";
 import { AppointmentController } from "../controllers/AppointmentController";
-import { validateDto } from "../middlewares/validateDto";
-import { CreateAppointmentDto } from "../dtos/CreateAppointmentDto";
 
 const router = Router();
 const ctrl = new AppointmentController();
@@ -14,6 +11,26 @@ const ctrl = new AppointmentController();
  *   description: Gerenciamento de agendamentos
  */
 
+/**
+ * @swagger
+ * /api/appointments:
+ *   post:
+ *     summary: Cria um novo agendamento
+ *     tags: [Appointments]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/CreateAppointmentDto'
+ *     responses:
+ *       201:
+ *         description: Agendamento criado com sucesso
+ *       409:
+ *         description: Email já cadastrado
+ *       422:
+ *         description: Payload inválido
+ */
 router.post("/", (req, res, next) =>
   ctrl.create(req, res, next)
 );

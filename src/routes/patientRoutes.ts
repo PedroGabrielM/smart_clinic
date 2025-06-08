@@ -1,8 +1,5 @@
-// src/routes/patientRoutes.ts
 import { Router } from "express";
 import { PatientController } from "../controllers/PatientController";
-import { validateDto } from "../middlewares/validateDto";
-import { CreatePatientDto } from "../dtos/CreatePatientDto";
 
 const router = Router();
 const ctrl = new PatientController();

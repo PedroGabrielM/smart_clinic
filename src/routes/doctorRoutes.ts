@@ -1,8 +1,5 @@
-// src/routes/doctorRoutes.ts
 import { Router } from "express";
 import { DoctorController } from "../controllers/DoctorController";
-import { validateDto } from "../middlewares/validateDto";
-import { CreateDoctorDto } from "../dtos/CreateDoctorDto";
 
 const router = Router();
 const ctrl = new DoctorController();
